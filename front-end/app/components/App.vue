@@ -2,44 +2,44 @@
     <BottomNavigation>
         <TabStrip>
             <TabStripItem class="navigation__item">
-                <Label text="Home"></Label>
+                <Label text="Gallery"></Label>
                 <Image src.decode="font://&#xf015;" class="fas t-36"></Image>
             </TabStripItem>
             <TabStripItem class="navigation__item">
                 <Label text="Chat"></Label>
-                <Image src.decode="font://&#xf1ea;" class="far t-36"></Image>
+                <Image src.decode="font://&#xf086;" class="far t-36"></Image>
             </TabStripItem>
             <TabStripItem class="navigation__item">
-                <Label text="Browse"></Label>
-                <Image src.decode="font://&#xf1ea;" class="far t-36"></Image>
+                <Label text="Calendar"></Label>
+                <Image src.decode="font://&#xf133;" class="far t-36"></Image>
             </TabStripItem>
             <TabStripItem class="navigation__item">
-                <Label text="Search"></Label>
-                <Image src.decode="font://&#xf002;" class="fas t-36"></Image>
+                <Label text="Settings"></Label>
+                <Image src.decode="font://&#xf509;" class="fas t-36"></Image>
             </TabStripItem>
         </TabStrip>
 
         <TabContentItem>
-            <Frame id="items">
-                <Items/>
+            <Frame id="gallery">
+                <Gallery/>
             </Frame>
         </TabContentItem>
 
         <TabContentItem>
             <Frame id="chat">
-                <Search/>
+                <Chat/>
             </Frame>
         </TabContentItem>
 
         <TabContentItem>
-            <Frame id="browse">
-                <Browse/>
+            <Frame id="calendar">
+                <Calendar/>
             </Frame>
         </TabContentItem>
 
         <TabContentItem>
-            <Frame id="search">
-                <Search/>
+            <Frame id="settings">
+                <Settings/>
             </Frame>
         </TabContentItem>
 
@@ -47,17 +47,17 @@
 </template>
 
 <script>
-  import Items from "./Items.vue";
-  import Browse from "./Browse.vue";
-  import Search from "./Search.vue";
+  import Gallery from "./Gallery.vue";
+  import Calendar from "./Calendar.vue";
+  import Settings from "./Settings.vue";
   import Chat from "./Chat.vue";
 
   export default {
     components: {
-      Items,
-      Browse,
+      Gallery,
+      Calendar,
       Chat,
-      Search,
+      Settings,
     }
   };
 </script>
