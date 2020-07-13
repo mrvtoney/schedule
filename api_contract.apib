@@ -1,0 +1,257 @@
+FORMAT: 1A
+
+# USchedule
+
+USchedule is an API allowing consumers to manage providers, clients, and appointments.
+
+# Group Providers
+
+## Provider Collection [/providers]
+
+### Get All Providers [GET]
++ Response 200 (application/json)
+
+        {
+            "data": [
+                {
+                    "id": 1,
+                    "name": "Jason Bourne",
+                    "email": "test@testing.com",
+                    "type_id": 1,
+                    "services_avail": ['haircut', 'shampoo', 'etc'],
+                    "phone": "858-867-5309",
+                    "address1": "231 Black Briar Lane",
+                    "address2": "Suite 100",
+                    "city": "San Diego",
+                    "state_code": "CA",
+                    "country_code": "US",
+                    "postal_code": "92109",
+                    "domain": "www.thatsjasonbourne.com",
+                    "default_tz": "US/Pacific"
+                }
+            ]
+        }
+
+### Create a New Provider [POST]
+
+Post route to create a new provider. It takes a JSON object
+containing the data for the new provider.
+
+
+```json
+{
+    "name": "string",
+    "type_id": "integer",
+    "email": "string",
+    "phone": "string",
+    "address1": "string",
+    "address2": "string",
+    "city": "string",
+    "state_code": "string",
+    "country_code": "string",
+    "postal_code": "string",
+    "domain": "string",
+    "default_tz": "string"
+}
+```
+
++ Request  (application/json)
+
+        {
+            "name": "New Provider",
+            "type_id": 2,
+            "email": "test@gmail.com",
+            "phone": "1314142131",
+            "address1": "New New Street",
+            "address2": "Suite 100",
+            "city": "San Diego",
+            "state_code": "CA",
+            "country_code": "US",
+            "postal_code": "92109",
+            "domain": "haircutsnstuff.com",
+            "default_tz": "US/Pacific"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "data": {
+                    "id":    10,
+                    "name": "New Provider",
+                    "type_id": 2,
+                    "email": "test@gmail.com",
+                    "phone": "1314142131",
+                    "address1": "New New Street",
+                    "address2": "Suite 100",
+                    "city": "San Diego",
+                    "state_code": "CA",
+                    "country_code": "US",
+                    "postal_code": "92109",
+                    "domain": "haircutsnstuff.com",
+                    "default_tz": "US/Pacific"
+                }
+            }
+
+## Provider [/providers/{providerId}{?include}]
+
++ Parameters
+    + providerId (number) - ID of the provider in the form of an integer
+
+### Get Provider By Id [GET]
+Returns the provider with the corresponding ID.
+
+If `include` is set to `clients`, all of a providers current clients are added to the response.
+If `include` is set to `appointments`, all of a providers future appointments are added to the response.
+
++ Parameters
+    + include (string, optional) - a string corresponding to the entity to include (only supports `environments` so far)
+
++ Response 200 (application/json)
+
+        {
+            "data": {
+                "id": 1,
+                "name": "Rocki Balboa",
+                "email": "test@testing.com",
+                "type_id": 1,
+                "phone": "858-867-5309",
+                "address1": "123 Ain't Easy St.",
+                "address2": "Suite 100",
+                "city": "San Diego",
+                "state_code": "CA",
+                "country_code": "US",
+                "postal_code": "92109",
+                "domain": "www.rockiscuts.com",
+                "default_tz": "US/Pacific"
+            }
+        }
+
+
++ Response 200 (application/json)
+
+        {
+            "data": {
+                "id": 1,
+                "name": "Rocki Balboa",
+                "email": "test@testing.com",
+                "type_id": 1,
+                "phone": "858-867-5309",
+                "address1": "123 Ain't Easy St.",
+                "address2": "Suite 100",
+                "city": "San Diego",
+                "state_code": "CA",
+                "country_code": "US",
+                "postal_code": "92109",
+                "domain": "www.rockiscuts.com",
+                "default_tz": "US/Pacific"
+            }
+            "included": [
+                {
+                },
+            ]
+        }
+
+### Update Provider [PATCH]
+
++ Request  (application/json)
+
+        {
+            "name": "Updated Provider",
+            "email": "test@gmail.com",
+            "phone": "1314142131",
+            "type_id": 2,
+            "address1": "3725 Tree",
+            "address2": "Suite 100",
+            "city": "San Diego",
+            "state_code": "CA",
+            "country_code": "US",
+            "postal_code": "92109",
+            "domain": "hmtransport.com",
+            "default_tz": "US/Pacific",
+        }
+
++ Response 200 (application/json)
+
+        {
+            "data": {
+                "id":    10,
+                "name": "Updated Provider",
+                "email": "test@gmail.com",
+                "phone": "1314142131",
+                "type_id": 2,
+                "address1": "3725 Tree",
+                "address2": "Suite 100",
+                "city": "San Diego",
+                "state_code": "CA",
+                "country_code": "US",
+                "postal_code": "92109",
+                "domain": "hmtransport.com",
+                "default_tz": "US/Pacific",
+            }
+        }
+
+
+# Group Clients
+
+## Client Collection [/clients]
+
+### Get All Clients [GET]
+
+Mostly contains client contact info.
+
++ Response 200 (application/json)
+
+        {
+            "data": [
+                {
+                    "id": 1,
+                    "name": "Some Dude",
+                    "email": "test@testing.com",
+                    "phone": "858-867-5309",
+                    "address1": "123 Easy St.",
+                    "address2": "Suite 100",
+                    "city": "San Diego",
+                    "state_code": "CA",
+                    "country_code": "US",
+                    "postal_code": "92109",
+                    "default_tz": "US/Pacific"
+                },
+            ]
+        }
+
+
+## Client [/clients/{clientId}]
+//TODO:
+
+# Group Appointments
+
+## Appointment Collection [/appointments]
+
+### Get All Appointments [GET]
++ Response 200 (application/json)
+
+        {
+            "data": [
+                {
+                    "id": 1,
+                    "client_id": "Rocki Balboa",
+                    "provider_id": "test@testing.com",
+                    "type_id": 1,
+                    "address1": "123 Ain't Easy St.",
+                    "address2": "Suite 100",
+                    "city": "San Diego",
+                    "state_code": "CA",
+                    "country_code": "US",
+                    "postal_code": "92109",
+                    "date": "03/23/2021"
+                    "start_time": "4:00 PM"
+                    "end_time": "7:00 PM"
+                    "default_tz": "US/Pacific"
+                },
+            ]
+        }
+
+## Appointment [/appointments/{appointmentId}]
+//TODO:
